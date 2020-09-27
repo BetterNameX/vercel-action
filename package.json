@@ -1,10 +1,10 @@
 {
-  "name": "now-deployment",
+  "name": "@betternamex/vercel-action",
   "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amondnet/now-deployment"
+    "url": "https://github.com/betternamex/vercel-action"
   },
   "author": {
     "name": "Minsu Lee",
@@ -18,9 +18,7 @@
     "start": "node ./index.js",
     "package": "ncc build index.js -o dist",
     "test": "jest",
-    "format": "prettier --write index.js",
-    "format-check": "prettier --check index.js",
-    "all": "npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run lint && npm run package && npm test"
   },
   "dependencies": {
     "@actions/core": "^1.2.2",

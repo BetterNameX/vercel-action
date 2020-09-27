@@ -10,8 +10,8 @@ inputs:
     default: ''
   github-comment:
     required: false
-    default: 'true'
-    description: 'if you want to comment on pr and commit, set true, default: true'
+    default: 'false'
+    description: 'if you want to comment on pr and commit, set true, default: false'
   github-token:
     required: false
     description: 'if you want to comment on pr and commit, set token'
