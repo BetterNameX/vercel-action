@@ -1289,6 +1289,22 @@ const aliasDomains = core
     return url;
   });
 
+const runtimeEnvVars = core
+  .getInput('runtime-env-variables')
+  .split('\n')
+  .filter(x => x !== '')
+  .map(s => {
+    return s.trim();
+  });
+
+const buildEnvVars = core
+  .getInput('build-env-variables')
+  .split('\n')
+  .filter(x => x !== '')
+  .map(s => {
+    return s.trim();
+  });
+
 let octokit;
 if (githubToken) {
   octokit = new github.GitHub(githubToken);
@@ -1350,6 +1366,14 @@ async function vercelDeploy(ref, commit) {
     '-m',
     `githubCommitRef=${ref}`,
   ];
+
+  if (runtimeEnvVars) {
+    runtimeEnvVars.forEach(el => args.push('--env', el));
+  }
+
+  if (buildEnvVars) {
+    buildEnvVars.forEach(el => args.push('--build-env', el));
+  }
 
   if (vercelScope) {
     core.info('using scope');
