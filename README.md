@@ -5,26 +5,12 @@
 
 This action make a Vercel deployment with github actions. 
 
-- [x] Deploy to Vercel.
-- [x] Comment on pull request.
-- [x] Comment on commit.
-- [x] [Password Protect ( Basic Auth )](https://github.com/amondnet/vercel-action#basic-auth-example)
-- [x] [Alias domain to deployment.](https://github.com/amondnet/vercel-action#alias-domains)
-- [ ] Create Deployment on github.
-
-## Result
-
-![preview](./preview.png)
-
-[pull request example](https://github.com/amondnet/now-deployment/pull/2)
-
-[commit](https://github.com/amondnet/now-deployment/commit/3d926623510294463c589327f5420663b1b0b35f)
 ## Inputs
 
 | Name              | Required | Default | Description                                                                                       |
 |-------------------|:--------:|---------|---------------------------------------------------------------------------------------------------|
 | vercel-token      |    [x]   |         | Vercel token. see https://vercel.com/account/tokens                                                                                  |
-| github-comment    |    [ ]   |  true   | if you don't want to comment on pull request.                                                     |
+| github-comment    |    [ ]   |  false  | if you don't want to comment on pull request.                                                     |
 | github-token      |    [ ]   |         | if you want to comment on pull request or commit. `${{ secrets.GITHUB_TOKEN }}` ([GitHub token docs](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token))                                                         |
 | vercel-project-id |    [x]   |         | ❗Vercel CLI 17+,The `name` property in vercel.json is deprecated (https://zeit.ink/5F)                  |
 | vercel-org-id     |    [x]   |         | ❗Vercel CLI 17+,The `name` property in vercel.json is deprecated (https://zeit.ink/5F)                  |
@@ -115,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v19
+      - uses: BetterNameX/vercel-action@master
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
@@ -124,20 +110,6 @@ jobs:
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./sub-directory
 ```
-
-
-### Angular Example
-
-See [.github/workflows/example-angular.yml](/.github/workflows/example-angular.yml) , 
-
-
-### Basic Auth Example
-
-How to add Basic Authentication to a Vercel deployment
-
-See [.github/workflows/example-express-basic-auth.yml](.github/workflows/example-express-basic-auth.yml)
-
-[source code](https://github.com/amondnet/vercel-action/tree/master/example/express-basic-auth)
 
 ### Alias Domains
 
@@ -178,7 +150,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v19
+      - uses: BetterNameX/vercel-action@master
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           github-token: ${{ secrets.GITHUB_TOKEN }} #Optional 
@@ -190,9 +162,6 @@ jobs:
             staging.angular.vercel-action.amond.dev
             pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
 ```
-
-
-
 
 # Package
 
@@ -207,10 +176,4 @@ git add dist
 git tag --new-release
 ```
 
-
-# Changelog
-
-```bash
-github_changelog_generator
-```
 
