@@ -148,8 +148,8 @@ async function vercelDeploy(ref, commit) {
 
   if (buildRuntimeEnvVars) {
     buildRuntimeEnvVars.forEach(el => {
-      args.push('--env', el)
-      args.push('--build-env', el)
+      args.push('--env', el);
+      args.push('--build-env', el);
     });
   }
 
