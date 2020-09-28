@@ -63,6 +63,10 @@ inputs:
     required: false
     description: 'Build Env variables'
     default: ''
+  build-runtime-env-variables:
+    required: false
+    description: 'Build & runtime Env variables'
+    default: ''
 
 outputs:
   preview-url:

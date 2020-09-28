@@ -1305,6 +1305,14 @@ const buildEnvVars = core
     return s.trim();
   });
 
+const buildRuntimeEnvVars = core
+  .getInput('build-runtime-env-variables')
+  .split('\n')
+  .filter(x => x !== '')
+  .map(s => {
+    return s.trim();
+  });
+
 let octokit;
 if (githubToken) {
   octokit = new github.GitHub(githubToken);
@@ -1373,6 +1381,13 @@ async function vercelDeploy(ref, commit) {
 
   if (buildEnvVars) {
     buildEnvVars.forEach(el => args.push('--build-env', el));
+  }
+
+  if (buildRuntimeEnvVars) {
+    buildRuntimeEnvVars.forEach(el => {
+      args.push('--env', el)
+      args.push('--build-env', el)
+    });
   }
 
   if (vercelScope) {
